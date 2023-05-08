@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">417D0947762</string>
+    <string name="title_activity_showlist">activity_showlist</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_小吃">小吃</string>
+    <string name="title_飲料">飲料</string>
+    <string name="title_購物車">購物車</string>
+    <string name="title_餐點">餐點</string>
 </resources>
