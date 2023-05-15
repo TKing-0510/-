@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_shoppingCar"
-        android:name="com.example.a417d0947762.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.a417d0947762.ui.Shoppingcar.ShoppingcarFragment"
+        android:label="@string/title_shoppingCar"
+        tools:layout="@layout/fragment_shoppingcar" />
 </navigation>
