@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
     private void showAllMeals() {
         Cursor cursor = dbHandler.getAllFoods();
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this.getContext(), R.layout.item_list, cursor, new String[]{"name", "price", "pictureName"}, new int[]{R.id.tv_mainMealName, R.id.tv_mainMealPrice, R.id.iv_pcname}, 0);
-        adapter.setViewBinder((view, cursor1, columnIndex) -> {
+        /*adapter.setViewBinder((view, cursor1, columnIndex) -> {
             if (view.getId() == R.id.tv_mainMealName) {
                 String pictureName = cursor1.getString(columnIndex);
                 try {
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             } else {
                 return false;
             }
-        });
+        });*/
         lvFoods.setAdapter(adapter);
     }
 
