@@ -124,7 +124,7 @@ public class DBHandler {
     }
 
     public Cursor getFoodInfo(long id) {
-        Cursor cursor = db.rawQuery("SELECT * FROM Foods WHERE _id =" + id, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Foods WHERE _id = " + id, null);
         return cursor;
     }
 }
