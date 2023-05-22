@@ -47,13 +47,13 @@ public class DBHandler {
     public void openFood() {
         db = activity.openOrCreateDatabase(FOOD_NAME, 0, null);
         db.execSQL(CREATE_FOOD_TABLE);
-        ContentValues values = new ContentValues();
+        /*ContentValues values = new ContentValues();
         values.put("name", "漢堡");
         values.put("description", "漢堡漢堡");
         values.put("price", 100);
         values.put("pictureName", "hamburger");
         long result = db.insertOrThrow("Foods", null, values);
-        /*values = new ContentValues();
+        values = new ContentValues();
         values.put("name", "薯條");
         values.put("description", "薯條薯條");
         values.put("price", 200);
@@ -120,6 +120,11 @@ public class DBHandler {
 
     public Cursor getAllDrinks() {
         Cursor cursor = db.rawQuery("SELECT * FROM Drinks", null);
+        return cursor;
+    }
+
+    public Cursor getFoodInfo(long id) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Foods WHERE _id =" + id, null);
         return cursor;
     }
 }

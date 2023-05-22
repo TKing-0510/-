@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView etUsername;
     private TextView etPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.a417d0947762.ui.home;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -17,18 +19,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.a417d0947762.DBHandler;
+import com.example.a417d0947762.MainActivity;
 import com.example.a417d0947762.databinding.FragmentHomeBinding;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.example.a417d0947762.R;
+import com.example.a417d0947762.infoFood;
 
 public class HomeFragment extends Fragment {
 
     private ListView lvFoods;
     private DBHandler dbHandler;
     private FragmentHomeBinding binding;
+    private long mealId = -1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +56,21 @@ public class HomeFragment extends Fragment {
         dbHandler = new DBHandler((AppCompatActivity) this.getContext());
         dbHandler.openFood();
         showAllMeals();
+
+        AdapterView.OnItemClickListener listenerFood = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mealId = id;
+                Bundle bundle = new Bundle();
+                bundle.putLong("mealId", mealId);
+                Intent intent = new Intent(HomeFragment.this.getContext(), infoFood.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                //Toast.makeText(MealManagementActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        lvFoods.setOnItemClickListener(listenerFood);
     }
 
     private void showAllMeals() {
