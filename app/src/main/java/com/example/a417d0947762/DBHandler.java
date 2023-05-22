@@ -53,7 +53,7 @@ public class DBHandler {
         values.put("price", 100);
         values.put("pictureName", "hamburger");
         long result = db.insertOrThrow("Foods", null, values);
-        values = new ContentValues();
+        /*values = new ContentValues();
         values.put("name", "薯條");
         values.put("description", "薯條薯條");
         values.put("price", 200);
@@ -64,7 +64,7 @@ public class DBHandler {
         values.put("description", "雞塊雞塊");
         values.put("price", 300);
         values.put("pictureName", "chicken");
-        result = db.insertOrThrow("Foods", null, values);
+        result = db.insertOrThrow("Foods", null, values);*/
     }
 
     public void openDrink() {
