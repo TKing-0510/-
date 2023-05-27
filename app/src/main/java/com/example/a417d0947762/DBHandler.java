@@ -14,9 +14,17 @@ public class DBHandler {
     public String mealPictureName;
     private static final String FOOD_NAME = "foods.db";
     private static final String DRINK_NAME = "drinks.db";
+    private static final String SNACK_NAME = "snacks.db";
     private static final String SHOPPING_CAR_NAME = "shoppingcar.db";
 
     private static final String CREATE_FOOD_TABLE = "CREATE TABLE IF NOT EXISTS Foods(" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "name TEXT NOT NULL, " +
+            "description TEXT, " +
+            "price INTEGER NOT NULL, " +
+            "pictureName TEXT NOT NULL);";
+
+    private static final String CREATE_SNACK_TABLE = "CREATE TABLE IF NOT EXISTS Snacks(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "name TEXT NOT NULL, " +
             "description TEXT, " +
@@ -67,10 +75,33 @@ public class DBHandler {
         result = db.insertOrThrow("Foods", null, values);*/
     }
 
+    public void openSnack() {
+        db = activity.openOrCreateDatabase(SNACK_NAME, 0, null);
+        db.execSQL(CREATE_SNACK_TABLE);
+        /*ContentValues values = new ContentValues();
+        values.put("name", "鷄塊");
+        values.put("description", "鷄塊鷄塊");
+        values.put("price", 30);
+        values.put("pictureName", "chickennuggets");
+        long result = db.insertOrThrow("Snacks", null, values);
+        values = new ContentValues();
+        values.put("name", "香腸");
+        values.put("description", "香腸香腸");
+        values.put("price", 20);
+        values.put("pictureName", "sausage");
+        result = db.insertOrThrow("Snacks", null, values);
+        values = new ContentValues();
+        values.put("name", "肉包");
+        values.put("description", "肉包肉包");
+        values.put("price", 20);
+        values.put("pictureName", "meatbun");
+        result = db.insertOrThrow("Snacks", null, values);*/
+    }
+
     public void openDrink() {
         db = activity.openOrCreateDatabase(DRINK_NAME, 0, null);
         db.execSQL(CREATE_DRINK_TABLE);
-        ContentValues values = new ContentValues();
+        /*ContentValues values = new ContentValues();
         values.put("name", "紅茶");
         values.put("description", "紅茶紅茶");
         values.put("price", 10);
@@ -87,7 +118,7 @@ public class DBHandler {
         values.put("description", "烏龍茶烏龍茶");
         values.put("price", 30);
         values.put("pictureName", "oolong");
-        result = db.insertOrThrow("Drinks", null, values);
+        result = db.insertOrThrow("Drinks", null, values);*/
     }
 
     public void openShoppingCar() {
@@ -118,6 +149,11 @@ public class DBHandler {
         return cursor;
     }
 
+    public Cursor getAllSnacks() {
+        Cursor cursor = db.rawQuery("SELECT * FROM Snacks", null);
+        return cursor;
+    }
+
     public Cursor getAllDrinks() {
         Cursor cursor = db.rawQuery("SELECT * FROM Drinks", null);
         return cursor;
@@ -127,4 +163,15 @@ public class DBHandler {
         Cursor cursor = db.rawQuery("SELECT * FROM Foods WHERE _id = " + id, null);
         return cursor;
     }
+
+    public Cursor getSnackInfo(long id) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Snacks WHERE _id = " + id, null);
+        return cursor;
+    }
+
+    public Cursor getDrinkInfo(long id) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Drinks WHERE _id = " + id, null);
+        return cursor;
+    }
+
 }

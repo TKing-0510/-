@@ -19,6 +19,7 @@ import java.io.IOException;
 public class infoFood extends AppCompatActivity {
 
   private DBHandler dbHandler;
+
   private SQLiteDatabase db;
   private ImageView foodInfoPicture;
   private TextView foodInfoName;
