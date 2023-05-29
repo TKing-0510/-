@@ -43,7 +43,8 @@ public class DBHandler {
             "name TEXT NOT NULL, " +
             "description TEXT, " +
             "price INTEGER NOT NULL, " +
-            "pictureName TEXT NOT NULL);";
+            "pictureName TEXT NOT NULL, " +
+            "number INTEGER NOT NULL);";
 
     private SQLiteDatabase db;
 
@@ -126,12 +127,13 @@ public class DBHandler {
         db.execSQL(CREATE_SHOPPING_CAR_TABLE);
     }
 
-    public void addShoppingCar(String name, String description, int price, String pictureName) {
+    public void addShoppingCar(String name, int price, String pictureName, int number) {
         ContentValues values = new ContentValues();
         values.put("name", name);
-        values.put("description", description);
+        //values.put("description", description);
         values.put("price", price);
         values.put("pictureName", pictureName);
+        values.put("number", number);
         long result = db.insertOrThrow("ShoppingCar", null, values);
     }
 
