@@ -32,10 +32,18 @@
 
             <TextView
                 android:id="@+id/tv_mainMealName"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="61dp"
                 android:textAlignment="center"
                 android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_mainMealNumber"
+                android:layout_width="50dp"
+                android:layout_height="61dp"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp" />
+
         </LinearLayout>
 
     </LinearLayout>
