@@ -1,5 +1,6 @@
 package com.example.a417d0947762.ui.Shoppingcar;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -96,16 +97,17 @@ public class ShoppingcarFragment extends Fragment {
   private  void showAllMeals() {
     Cursor cursor = dbHandler.getAllShoppingCar();
     tv_totalprice = requireView().findViewById(R.id.tv_totalprice);
-
+    final int[] totalprice = {0};
     SimpleCursorAdapter adapter = new SimpleCursorAdapter(this.requireActivity(), R.layout.item_list, cursor, new String[]{"name", "price", "pictureName","number"}, new int[]{R.id.tv_mainMealName, R.id.tv_mainMealPrice, R.id.iv_pictureName,R.id.tv_mainMealNumber}, 0);
     adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+      @SuppressLint("SetTextI18n")
       @Override
       public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
         if (view.getId() == R.id.iv_pictureName) {
           String pictureName = cursor.getString(columnIndex);
-          int price = cursor.getInt(1);
-          int number = cursor.getInt(1);
-          int totalprice = price + number;
+          int price = cursor.getInt(3);
+          int number = cursor.getInt(5);
+          totalprice[0] += price * number;
           try {
             FileInputStream fis = requireActivity().openFileInput(pictureName + ".jpg");
             Bitmap bitmap = BitmapFactory.decodeStream(fis);
@@ -113,7 +115,7 @@ public class ShoppingcarFragment extends Fragment {
             ImageView imageView = (ImageView) view;
             imageView.setImageBitmap(bitmap);
 
-            tv_totalprice.setText("總金額 : "+totalprice);
+            tv_totalprice.setText("總金額 : "+ totalprice[0]);
           } catch (IOException e) {
             e.printStackTrace();
           }
