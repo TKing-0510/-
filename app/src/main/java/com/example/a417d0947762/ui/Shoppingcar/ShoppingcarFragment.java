@@ -52,23 +52,9 @@ public class ShoppingcarFragment extends Fragment {
     ShoppingcarViewModel shoppingcarViewModel =
       new ViewModelProvider(this).get(ShoppingcarViewModel.class);
 
-    Button btndelete = (Button) getView().findViewById(R.id.btn_delete);
-    Button btncomfort = (Button) getView().findViewById(R.id.btn_comfort);
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        if(view.getId() == R.id.btn_delete){
-          dbHandler.deleteShoppingCar(id);
-          showAllMeals();
-        }
-        else if(view.getId()==R.id.btn_comfort){
-          Toast.makeText(getContext(),"成功下單，請稍作等待",Toast.LENGTH_SHORT).show();
-        }
-      }
-    };
-    btncomfort.setOnClickListener(onClickListener);
-    btndelete.setOnClickListener(onClickListener);
+
+
 
 
 
@@ -88,7 +74,24 @@ public class ShoppingcarFragment extends Fragment {
     dbHandler = new DBHandler((AppCompatActivity) this.getContext());
     dbHandler.openShoppingCar();
 
+    Button btndelete = requireView().findViewById(R.id.btn_delete);
+    Button btncomfort = requireView().findViewById(R.id.btn_comfort);
 
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if(view.getId() == R.id.btn_delete){
+          dbHandler.deleteShoppingCar(id);
+          showAllMeals();
+        }
+        else if(view.getId()==R.id.btn_comfort){
+          Toast.makeText(getContext(),"成功下單，請稍作等待",Toast.LENGTH_SHORT).show();
+        }
+      }
+    };
+    btncomfort.setOnClickListener(onClickListener);
+    btndelete.setOnClickListener(onClickListener);
 
 
 
