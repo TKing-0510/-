@@ -1,6 +1,7 @@
 package com.example.a417d0947762.ui.Shoppingcar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,6 +26,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.a417d0947762.DBHandler;
 import com.example.a417d0947762.R;
 import com.example.a417d0947762.databinding.FragmentShoppingcarBinding;
+import com.example.a417d0947762.orderConfirmationactivity;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -74,8 +76,12 @@ public class ShoppingcarFragment extends Fragment {
           showAllMeals();
         }
         else if(view.getId()==R.id.btn_comfort){
+
           Toast.makeText(getContext(),"成功下單，請稍作等待",Toast.LENGTH_SHORT).show();
+          Intent intent = new Intent(getActivity(), orderConfirmationactivity.class);
+          startActivity(intent);
         }
+
       }
     };
     btncomfort.setOnClickListener(onClickListener);
