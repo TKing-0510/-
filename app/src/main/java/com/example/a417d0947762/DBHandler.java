@@ -56,7 +56,7 @@ public class DBHandler {
     public void openFood() {
         db = activity.openOrCreateDatabase(FOOD_NAME, 0, null);
         db.execSQL(CREATE_FOOD_TABLE);
-        /*ContentValues values = new ContentValues();
+        ContentValues values = new ContentValues();
         values.put("name", "漢堡");
         values.put("description", "漢堡漢堡");
         values.put("price", 100);
@@ -73,7 +73,7 @@ public class DBHandler {
         values.put("description", "雞塊雞塊");
         values.put("price", 300);
         values.put("pictureName", "chicken");
-        result = db.insertOrThrow("Foods", null, values);*/
+        result = db.insertOrThrow("Foods", null, values);
     }
 
     public void openSnack() {
