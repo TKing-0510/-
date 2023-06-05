@@ -35,8 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 String password = sharedPreferences.getString("password", "");
 
                 if(userName.equals(etUsername.getText().toString()) && password.equals(etPassword.getText().toString()) && !etUsername.getText().toString().equals("") && !etPassword.getText().toString().equals("")) {
-                    Intent intent = new Intent(MainActivity.this, activity_showlist.class);
-                    startActivity(intent);
+                    if (userName.equals("user") && password.equals("user")) {
+                        Intent intent = new Intent(MainActivity.this, userActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(MainActivity.this, activity_showlist.class);
+                        startActivity(intent);
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "帳號或密碼錯誤", Toast.LENGTH_SHORT).show();
                 }

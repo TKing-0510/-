@@ -3,7 +3,6 @@ package com.example.a417d0947762;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a417d0947762.ui.home.HomeFragment;
@@ -56,7 +55,7 @@ public class DBHandler {
     public void openFood() {
         db = activity.openOrCreateDatabase(FOOD_NAME, 0, null);
         db.execSQL(CREATE_FOOD_TABLE);
-        ContentValues values = new ContentValues();
+        /*ContentValues values = new ContentValues();
         values.put("name", "漢堡");
         values.put("description", "漢堡漢堡");
         values.put("price", 100);
@@ -73,7 +72,7 @@ public class DBHandler {
         values.put("description", "雞塊雞塊");
         values.put("price", 300);
         values.put("pictureName", "chicken");
-        result = db.insertOrThrow("Foods", null, values);
+        result = db.insertOrThrow("Foods", null, values);*/
     }
 
     public void openSnack() {
@@ -174,6 +173,31 @@ public class DBHandler {
     public Cursor getDrinkInfo(long id) {
         Cursor cursor = db.rawQuery("SELECT * FROM Drinks WHERE _id = " + id, null);
         return cursor;
+    }
+
+    public void addFood(String name, String description, int price, String pictureName) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("description", description);
+        values.put("price", price);
+        values.put("pictureName", pictureName);
+        db.insert("Foods", null, values);
+    }
+
+    public void addSnack(String name, String description, int price, String pictureName) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("description", description);
+        values.put("price", price);
+        db.insert("Snacks", null, values);
+    }
+
+    public void addDrink(String name, String description, int price, String pictureName) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("description", description);
+        values.put("price", price);
+        db.insert("Drinks", null, values);
     }
 
 }
